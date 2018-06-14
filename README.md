@@ -4,7 +4,7 @@ React Native DatePicker component for both Android and iOS, using DatePickerAndr
 ## Install
 
 ```bash
-npm install react-native-datepicker --save
+npm install nimamyscreen/react-native-datepicker --save
 ```
 
 Or using [react-native-ui-xg](https://github.com/xgfe/react-native-ui-xg), our react-naitve ui kit.
