@@ -40,6 +40,7 @@ class DatePicker extends Component {
     this.datePicked = this.datePicked.bind(this);
     this.onPressDate = this.onPressDate.bind(this);
     this.onPressCancel = this.onPressCancel.bind(this);
+    this.onPressClear = this.onPressClear.bind(this);
     this.onPressConfirm = this.onPressConfirm.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
     this.onPressMask = this.onPressMask.bind(this);
@@ -99,6 +100,17 @@ class DatePicker extends Component {
   }
 
   onPressCancel() {
+    this.setModalVisible(false);
+
+    if (typeof this.props.onCloseModal === 'function') {
+      this.props.onCloseModal();
+    }
+  }
+
+  onPressClear() {
+    if (typeof this.props.onDateChange === 'function') {
+      this.props.onDateChange('');
+    }
     this.setModalVisible(false);
 
     if (typeof this.props.onCloseModal === 'function') {
@@ -339,6 +351,7 @@ class DatePicker extends Component {
       minuteInterval,
       timeZoneOffsetInMinutes,
       cancelBtnText,
+      clearBtnText,
       confirmBtnText,
       titleText,
       TouchableComponent,
@@ -410,7 +423,7 @@ class DatePicker extends Component {
                     </View>
                     <TouchableComponent
                       underlayColor={'transparent'}
-                      onPress={this.onPressCancel}
+                      onPress={this.onPressClear}
                       style={[Style.btnText, Style.btnCancel, customStyles.btnCancel]}
                       testID={cancelBtnTestID}
                     >
@@ -418,7 +431,7 @@ class DatePicker extends Component {
                         allowFontScaling={allowFontScaling}
                         style={[Style.btnTextText, Style.btnTextCancel, customStyles.btnTextCancel]}
                       >
-                        {cancelBtnText}
+                        {clearBtnText}
                       </Text>
                     </TouchableComponent>
                     <TouchableComponent
@@ -468,6 +481,7 @@ DatePicker.defaultProps = {
   duration: 300,
   confirmBtnText: '确定',
   cancelBtnText: '取消',
+  clearBtnText: '取消',
   iconSource: require('./date_icon.png'),
   customStyles: {},
 
@@ -493,6 +507,7 @@ DatePicker.propTypes = {
   duration: PropTypes.number,
   confirmBtnText: PropTypes.string,
   cancelBtnText: PropTypes.string,
+  clearBtnText: PropTypes.string,
   iconSource: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
   iconComponent: PropTypes.element,
   customStyles: PropTypes.object,
