@@ -369,11 +369,12 @@ class DatePicker extends Component {
     ];
 
     return (
-      <TouchableComponent
+      <View
         style={[Style.dateTouch, style]}
         underlayColor={'transparent'}
         onPress={this.onPressDate}
         testID={testID}
+        activeOpacity={0.4}
       >
         <View style={[Style.dateTouchBody, customStyles.dateTouchBody]}>
           {
@@ -465,7 +466,7 @@ class DatePicker extends Component {
             </View>
           </Modal>}
         </View>
-      </TouchableComponent>
+      </View>
     );
   }
 }
